@@ -1,0 +1,75 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    title
+      | PooulCloud Gateway
+    meta[content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"]
+    = csrf_meta_tags
+
+    link[href="/color_admin/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"]
+    link[href="/color_admin/assets/css/animate.min.css" rel="stylesheet"]
+    link[href="/color_admin/assets/css/style.min.css" rel="stylesheet"]
+    link[href="/color_admin/assets/css/style-responsive.min.css" rel="stylesheet"]
+    link#theme[href="/color_admin/assets/css/theme/red.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/bootstrap-calendar/css/bootstrap_calendar.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/morris/morris.css" rel="stylesheet"]
+    link[href="/color_admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"]
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    script[src="/color_admin/assets/js/apps.min.js"]
+
+
+  body
+    #page-loader.fade.in
+      span.spinner
+
+    #page-container.fade.page-sidebar-fixed.page-header-fixed
+      #header.header.navbar.navbar-default.navbar-fixed-top
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="/" PooulCloud Gateway
+          = render 'shared/main_menu'
+    
+    .sidebar#sidebar
+      ==render 'shared/left_menu'
+    .sidebar-bg
+                      
+    #content.content
+      = yield
+
+    footer.footer Copyright © 2015-2016 PooulCloud 保留所有权利
+
+    script[src="/color_admin/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"]
+    script[src="/color_admin/assets/plugins/pace/pace.min.js"]
+    script[src="/color_admin/assets/plugins/gritter/js/jquery.gritter.min.js"]
+    javascript:
+      //sidemenu();
+      //client_show();
+      App.init();
+      //FormPlugins.init();
+      //Dashboard.init();
+    
+    // 显示flash消息
+    - flash.each do |type, message|
+      javascript:
+        setTimeout( function() {
+          $.gritter.add({
+            title: '#{type}信息',
+            text: '#{message}',
+            image: '#{asset_path("messagebox_warning.png")}',
+            sticky: false,
+            time: '10000',
+            class_name: 'my-sticky-class'
+            });
+            }, 500);

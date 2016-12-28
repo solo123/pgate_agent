@@ -1,0 +1,19 @@
+ul.nav
+  li.nav-profile
+    div.info
+      big 普尔聚合支付网关
+      br
+      span 商户平台
+
+ul.nav#sidemenu
+  li.has-sub.active
+    a href="javascript:;" 
+      b.caret.pull-right
+      i.fa.fa-th
+      span 菜单
+    ul.sub-menu
+      li= link_to '支付列表', payments_path
+      li= link_to '每日业务数据总汇表', statements_path
+      li
+        a href='javascript:;' class='sidebar-minify-btn' data-click='sidebar-minify'
+          i class="fa fa-angle-double-left"

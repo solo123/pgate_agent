@@ -1,0 +1,8 @@
+.filter-wrap.collapsed
+  = form_tag(statements_path, class: "form-inline") do
+    .form-group.m-r-10
+	    = text_field_tag :id, @dt, class: "datepicker datepicker-date form-control", placeholder: '日期'
+		.form-group.m-r-10
+	    = submit_tag '查找', class: 'btn btn-info'
+    .form-group.m-r-10
+	    = link_to '导出', statement_path(id: params[:id], format: :csv), class: 'btn btn-info'

@@ -1,0 +1,51 @@
+#page-container
+  .login.login-with-news-feed
+    /! begin news-feed
+    .news-feed
+      .news-image
+        = image_tag(("pooulcloud-bg.jpg"), :alt => "Pooulcloud Gataway")
+      .news-caption
+        h4.caption-title
+          i.fa.fa-diamond.text-success
+          |  Bank payment gateway
+        p
+          | PooulCloud Gateway
+    /! end news-feed
+    /! begin right-content
+    .right-content
+      /! begin login-header
+      .login-header
+        .brand
+          = image_tag(("pooul-logo.png"), :alt => "Pooulcloud")
+          small Bank payment gateway
+        .icon
+          i.fa.fa-sign-in
+      /! end login-header
+      /! begin login-content
+      .login-content
+        = simple_form_for(resource, as: resource_name,
+                          url: session_path(resource_name),
+                          defaults: {label_html: {class: 'margin-bottom-0'}}) do |f|
+          .form-group.m-b-15
+            = f.input :email, label: false, input_html: {class: "input-lg"}, placeholder: 'Email', required: false, autofocus: true
+          .form-group.m-b-15
+            = f.input :password, label: false, input_html: {class: "input-lg"}, placeholder: '密码',  required: false
+          .checkbox.m-b-30
+            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          .login-buttons
+            = f.button :submit, "登录", class: 'btn btn-success btn-block btn-lg'
+          .m-t-20.m-b-40.p-b-40.text-inverse
+            | 还没有账号？ 点击
+            a.text-success href="http://form.mikecrm.com/RPoRjy"  申请
+          hr/
+          ul.bank.list-unstyled.nav.nav-pills
+            li.m-b-15
+              = image_tag(("citic-bank-logo.png"), :alt => "中信银行")
+            li.m-b-15
+              = image_tag(("minsheng-bank-logo.png"), :alt => "民生银行")
+            li.m-b-15
+              = image_tag(("bjrs-bank-logo.png"), :alt => "农商银行")
+          p.text-center
+            | © PooulCloud All Right Reserved 2017
+      /! end login-content
+    /! end right-container

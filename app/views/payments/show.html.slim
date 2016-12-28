@@ -1,0 +1,28 @@
+h2 订单：#{@object.order_num}
+
+table.table.table-bordered style="width: auto;"
+  tr
+    td 订单时间
+    td= @object.order_time
+  tr
+    td 请求类型
+    td= @object.method
+  tr
+    td 订单标题
+    td= @object.order_title
+  tr
+    td 金额
+    td= (@object.amount / 100.00)
+  tr
+    td 支付IP
+    td= @object.remote_ip
+  tr
+    td 状态
+    td= @object.status_enum.invert[@object.status]
+  - if @object.pay_result
+    tr
+      td 交易银行
+      td= @object.pay_result.bank_type
+    tr
+      td 交易渠道
+      td= @object.pay_result.channel_name
